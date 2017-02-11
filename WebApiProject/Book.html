@@ -7,35 +7,21 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var bookTable = $('#bookTable');
-            $('#btn').click(function () {
+           $ ('#btn').click(function() {
+               
+   
                 $.ajax({
                     type: 'GET',
                     url: 'api/Book',
                     dataType: 'json',
-                    //success: function (data) {
-                    //    if(data)
-                    //    {
-                    //        var len = data.length;
-                    //        var txt="";
-                    //        if (len > 0) {
-                    //            for (var i = 0; i = len; i++) {
-                    //                txt += "<tr><td>" + data[i].Name + "<tr><td>" + data[i].Category + "</td><td>" + data[i].Author + "</td></tr>";
-
-                    //            }
-                    //            if(txt!="")
-                    //            {
-                    //                $("#bookTable").append(txt);
-                    //            }
-                    //        }
-
-                    //    }
-                    //}
+                   
                     success: function (data) {
                         bookTable.empty();
-                        $.each(data, function (index, value) {
                         
-
-                            
+                        $("#bookTable").append('<thead>').children('thead')
+                              .append('<tr />').children('tr').append('<th>Id</th><th>Name</th><th>Category</th><th>Author</th>');
+                    
+                           $.each(data, function (index, value) {  
                             var row = $("<tr><td>" + value.Id+"</td><td>"+value.Name +"</td><td>" +value.Category  + "</td><td>" + value.Author + "</td></tr>");
                             $("#bookTable").append(row);
 
@@ -52,15 +38,9 @@
     </script>
 </head>
 <body>
-    <input id="btn" type="button" value="Get All Book Details" />
+    <input id="btn" type="button"  value="Get All Book Details" />
     <table id="bookTable">
-        <tr>
-            <th width="10">ID</th>
-            <th width="40">Name</th>
-            <th width="40">Category</th>
-            <th width="40">Author</th>
-            
-        </tr>
+        
     </table>
 
 </body>
